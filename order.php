@@ -311,19 +311,10 @@ select.form-control {
 
           <div class="row mt-3 mx-4">
             <div class="col-12">
-              <label class="order-form-label">Type of thing you want to order</label>
+              <label class="order-form-label">Email</label>
             </div>
             <div class="col-12">
-              <input class="order-form-input" placeholder=" ">
-            </div>
-          </div>
-
-          <div class="row mt-3 mx-4">
-            <div class="col-12">
-              <label class="order-form-label">Another type of thing you want to order</label>
-            </div>
-            <div class="col-12">
-              <input class="order-form-input" placeholder=" ">
+              <input class="order-form-input" value="<?php echo $row['email']; ?>" placeholder=" ">
             </div>
           </div>
 
@@ -388,13 +379,13 @@ select.form-control {
               action:'EmptyCart'
             },
             success: function(data, status) {
-              // $.ajax({
-              //     url: "sendMail.php",
-              //     type: "post",
-              //     data: {
-              //         id: product_id
-              //     },
-              //     success: function(data, status) {
+              $.ajax({
+                  url: "sendMail.php",
+                  type: "post",
+                  data: {
+                      id: product_id
+                  },
+                  success: function(data, status) {
                     Swal.fire(
                       'Done',
                       'Your order has been Placed',
@@ -402,8 +393,8 @@ select.form-control {
                     ).then((r) => {
                       window.location.href = "welcome.php";
                     })
-              //     },
-              // });
+                  },
+              });
             },
         });
     }
